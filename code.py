@@ -1,12 +1,19 @@
 import board
-import digitalio
+import adafruit_bme680
 import time
+import digitalio
 
-led = digitalio.DigitalInOut(board.LED)
-led.direction = digitalio.Direction.OUTPUT
+cs = digitalio.DigitalInOut(board.D10)
+spi = board.SPI()
+bme680 = adafruit_bme680.Adafruit_BME680_SPI(spi, cs)
+
+bme680.sea_level_pressure = 1013.25
 
 while True:
-    led.value = True
-    time.sleep(0.1)
-    led.value = False
-    time.sleep(0.1)
+    print('Temperature: {} C'.format(bme680.temperature))
+    print('Gas: {} ohms'.format(bme680.gas))
+    print('Humidity: {}%'.format(bme680.humidity))
+    print('Pressure: {}hPa'.format(bme680.pressure))
+    print('Altitude: {}m'.format(bme680.altitude))
+
+    time.sleep(5)
