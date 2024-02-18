@@ -1,14 +1,12 @@
-from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, Http404
 from django.utils import timezone
 import datetime
 import json
 from .models import Record
-
 def current(request):
     if request.method == "GET":
         most_recent = Record.objects.all().order_by("-date")[:1].get()
-
+        
         serialized_data = {
             "temperature": most_recent.temperature,
             "humidity": most_recent.humidity,
@@ -24,10 +22,10 @@ def current(request):
         body = json.loads(request.body)
 
         if not "temperature" in body or not "humidity" in body or not "pressure" in body or not "gas" in body or not "light" in body:
-           return JsonResponse({
-                "success": False,
-                "message": "Missing required parameters."
-           }, status=400)
+            return JsonResponse({
+                    "success": False,
+                    "message": "Missing required parameters."
+            }, status=400)
 
         good_data = {
             "temperature": body["temperature"],
@@ -43,11 +41,14 @@ def current(request):
             "success": True
         }, status=201)
     else:
-        return
+        return JsonResponse({
+            "success": False,
+            "message": "Route not found for the specified HTTP method."
+        }, status=404)
 
 def historical(request):
     if request.method != "GET":
-        return
+        raise Http404
     
     days = int(request.GET.get('days', None)) # URL Query Param
     daysAgo = timezone.now() - datetime.timedelta(days=days)
