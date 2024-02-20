@@ -9,7 +9,7 @@ const btn = document.querySelector('button');
 
 const setData = async () => {
 	try {
-		const req = await fetch('http://weather.chickencurious.com/weather/current/');
+		const req = await fetch('http://weatherapi.chickencurious.com/weather/current/');
 
 		const data = await req.json();
 

@@ -22,4 +22,4 @@ I'm using an Arduino RP2040 Nano Connect and to Adafruit breakout boards - the V
 
 The code for the Arduino is in the outermost file. Nothing overly fancy. The whole goal of this project was just for me to re-familiarize myself with python and django after years of not using it (see the API) and take a crack at Arduinos for the first time.
 
-Prior to this, my only microcontroller experience was with an STM32 Nucleo board in ECE 198 at Waterloo. In that project, I fumbled my way through without any libraries, implementing my own I2C calls and PWM Buzzer code.
+Prior to this, my only microcontroller experience was with an STM32 Nucleo board in ECE 198 at Waterloo. In [that project](https://git.uwaterloo.ca/jmurphym/ece198_2_18/-/blob/main/Core/Src/main.c?ref_type=heads), I fumbled my way through without any libraries, implementing my own I2C calls and without the comforts of arduino-provided functions.
