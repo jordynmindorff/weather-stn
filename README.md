@@ -1,13 +1,12 @@
 # Arduino Weather Station Application
 
-LINK TO APPLICATION
-LINK TO API
+See live data [here](http://weather.chickencurious.com).
 
 ## The Premise
 
 I have an Arduino that has WiFi connectivity. It is connected to two sensor breakout boards via SPI and I2C for weather conditions.
 
-The Arduino makes a POST request to the API I created every 3 minutes.
+The Arduino makes a POST request to the API I created every 10 minutes.
 
 The web application serves as a VERY simple portal to view the most recent data. If you want to see me work on front-end stuff for some reason, please run away now and look elsewhere before you are scarred by the ugliness of this application...
 
@@ -16,7 +15,8 @@ The web application serves as a VERY simple portal to view the most recent data.
 ## Details
 
 Here's a photo of the hardware:
-\<INSERT PHOTO\>
+<br>
+<img src="./images/IMG_5489.webp" alt="Breadboard setup" height="400">
 
 I'm using an Arduino RP2040 Nano Connect and to Adafruit breakout boards - the VEML7700 for light readings and the BME680 for environmental info.
 

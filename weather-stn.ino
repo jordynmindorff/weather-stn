@@ -82,14 +82,15 @@ void loop() {
 
   // Check on WiFi status to maintain connection in intervals between calls
   if (status != WL_CONNECTED) {
-    Serial.println("WiFi connection lost.")
+    Serial.println("WiFi connection lost.");
     while (status != WL_CONNECTED) {
       status = initiateConnection();
       delay(1000);
     }
-    Serial.println("Regained.")
+    Serial.println("Regained.");
   }
 
+  bme.performReading(); // Mostly for the purpose of keeping the gas sensor warm
   delay(10000); // No need to spam check (basically "are we there yet? are we there yet?")
 }
 
@@ -137,7 +138,7 @@ void doReading() {
 
     // Things get messy because of a combination of std::string and Arduino::String (if only ArduinoHttpClient accepted std::string...)
     String contentType = "application/json";
-    std::string postData = "{ "temperature":" + std::to_string(bme.temperature) + ", "humidity":" + std::to_string(bme.humidity) + ", "pressure":" + std::to_string(bme.pressure) + ", "gas":" + std::to_string(bme.gas_resistance) + ", "light":" + std::to_string(lux) + " }";
+    std::string postData = "{ \"temperature\":" + std::to_string(bme.temperature) + ", \"humidity\":" + std::to_string(bme.humidity) + ", \"pressure\":" + std::to_string(bme.pressure) + ", \"gas\":" + std::to_string(bme.gas_resistance) + ", \"light\":" + std::to_string(lux) + " }";
 
     Serial.print(String(postData.c_str()));
     Serial.println();
