@@ -15,7 +15,7 @@ const setData = async () => {
 
 		temp.textContent = data.temperature;
 		humid.textContent = data.humidity;
-		press.textContent = data.press;
+		press.textContent = data.pressure;
 		gas.textContent = data.gas;
 		light.textContent = data.light;
 		date.textContent = data.date;
